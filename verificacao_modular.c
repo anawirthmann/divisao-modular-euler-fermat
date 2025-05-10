@@ -7,9 +7,14 @@
 */
 #include <stdio.h>
 
-// funcoes
 
-int calcular_mdc(int a, int b)
+
+// ---------- FUNÇÕES AUXILIARES ----------
+
+
+int calcular_mdc(int a, int b) 
+// Calcula o MDC entre a e b usando o Algoritmo de Euclides
+// Se mdc(a, b) == 1, então a e b são coprimos
   {
     while (b != 0)
       {
@@ -22,6 +27,8 @@ int calcular_mdc(int a, int b)
 
 
 int verifica_primo(int n)
+// Verifica se n é um número primo
+// Retorna 1 se n for primo, 0 caso contrário
   {
     if (n < 2) return 0;
     for (int i = 2; i * i <= n; i++)
@@ -33,6 +40,8 @@ int verifica_primo(int n)
 
 
 int calcular_inverso(int G, int n)
+// Calcula o inverso modular de G módulo n usando o Algoritmo de Euclides Estendido
+// Retorna x tal que (G * x) ≡ 1 mod n, se G e n forem coprimos
   {
     int t = 0, novo_t = 1;
     int r = n, novo_r = G;
@@ -56,6 +65,8 @@ int calcular_inverso(int G, int n)
 
 
 int totiente(int n1)
+// Calcula φ(n1), função totiente de Euler
+// Conta quantos inteiros positivos menores que n1 são coprimos com n1
   {
     int resultado = n1;
     for (int i = 2; i * i <= n1; i++)
@@ -76,6 +87,10 @@ int totiente(int n1)
 
 
 int exp_mod(int base, int expoente, int modulo)
+// Calcula (base^expoente) mod modulo
+// Essa função é usada para fazer potências com números grandes, mas sem deixar o número explodir
+// Ela multiplica a base várias vezes por ela mesma, sempre pegando o resto da divisão pelo modulo
+// Para manter os números pequenos e o cálculo mais rápido, mesmo com expoentes altos
   {
     int resultado = 1;
     base = base % modulo;
@@ -91,7 +106,8 @@ int exp_mod(int base, int expoente, int modulo)
   }
 
 
-// 
+// ---------- FUNÇÃO PRINCIPAL ----------
+
 
 int main()
   {
