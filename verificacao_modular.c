@@ -113,7 +113,14 @@ int main()
   {
     int H, G, n, x, n1;
 
-    printf("Digite os valores de H, G, n, x, n1: ");
+      printf("============================================================\n");
+      printf("  NESTE PROGRAMA SERAO USADOS OS SEGUINTES VALORES:\n");
+      printf("  H, G, n  → três números inteiros positivos usados para calcular a base a\n");
+      printf("  x  → expoente\n");
+      printf("  n1 → módulo\n");
+      printf("============================================================\n\n");
+      printf("Digite os valores de H, G, n, x, n1: ");
+
     scanf("%d %d %d %d %d", &H, &G, &n, &x, &n1);
 
     printf("\n1) Verificando se G e n sao coprimos usando o Algoritmo de Euclides...\n");
