@@ -5,12 +5,11 @@
  Professora: Cristiane Loesch de Souza Costa
  ==============================================
 */
+
+
 #include <stdio.h>
 
-
-
 // ---------- FUNÇÕES AUXILIARES ----------
-
 
 int calcular_mdc(int a, int b) 
 // Calcula o MDC entre a e b usando o Algoritmo de Euclides
@@ -61,7 +60,6 @@ int calcular_inverso(int G, int n)
     if (t < 0) t += n;
     return t;
   }
-
 
 
 int totiente(int n1)
