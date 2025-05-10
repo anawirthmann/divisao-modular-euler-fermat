@@ -6,10 +6,10 @@
  ==============================================
 */
 
-
 #include <stdio.h>
 
 // ---------- FUNÇÕES AUXILIARES ----------
+
 
 int calcular_mdc(int a, int b) 
 // Calcula o MDC entre a e b usando o Algoritmo de Euclides
@@ -60,6 +60,7 @@ int calcular_inverso(int G, int n)
     if (t < 0) t += n;
     return t;
   }
+
 
 
 int totiente(int n1)
@@ -117,73 +118,123 @@ int main()
     printf("  x  → expoente\n");
     printf("  n1 → módulo\n");
     printf("==========================================================================\n\n");
-    printf("Digite os valores de H, G, n, x, n1: ");
+    printf("  Digite os valores de H, G, n, x, n1: ");
 
     scanf("%d %d %d %d %d", &H, &G, &n, &x, &n1);
+    
+   //etapa 1
 
-    printf("\n1) Verificando se G e n sao coprimos usando o Algoritmo de Euclides...\n");
+    printf("\n  1) Verificando se G e n sao coprimos usando o Algoritmo de Euclides...\n");
     int d = calcular_mdc(G, n);
+    
+    printf("   → Entenda: Dois inteiros G e n são coprimos se mdc(G, n) = 1\n");//explicando
+    
     if (d != 1)
       {
-        printf("mdc(%d, %d) = %d. Portanto, G e n nao sao coprimos. A divisao modular nao pode ser feita.\n", G, n, d);
+        printf("\n  mdc(%d, %d) = %d. Portanto, G e n nao sao coprimos. A divisao modular nao pode ser feita.\n", G, n, d);
         return 1;
       }
-    printf("G e n sao coprimos. Prosseguindo...\n");
+    printf("\n     G e n sao coprimos. Prosseguindo...\n");
+    
+    //etapa 2
 
-    printf("\n2) Calculando o inverso modular de G em Z_n...\n");
+    printf("\n  2) Calculando o inverso modular de G em Z_n...\n");
     int Ginv = calcular_inverso(G, n);
+    
+    printf("   → Entenda: O inverso de G módulo n é o número G⁻¹ tal que G * G⁻¹ ≡ 1 (mod n)\n");//explicando
+    
     if (Ginv == -1)
       {
-        printf("G nao possui inverso modulo n. A divisao nao pode ser feita.\n");
+        printf("\n     G nao possui inverso modulo n. A divisao nao pode ser feita.\n");
         return 1;
       }
-    printf("Inverso de G = %d mod %d e: %d\n", G, n, Ginv);
+    printf("\n     O inverso de G = %d mod %d eh: %d\n", G, n, Ginv);
+    printf("     Pois %d * %d ≡ 1 mod %d\n", G, Ginv, n);
 
-    printf("\n3) Calculando a = H * G⁻1 mod n...\n");
+    
+    //etapa 3
+
+    printf("\n  3) Calculando a = H * G⁻1 mod n...\n");
     int a = (H * Ginv) % n;
-    printf("a = %d * %d mod %d = %d\n", H, Ginv, n, a);
+    
+    printf("   → Entenda: Multiplicamos H pelo inverso de G para efetuar a divisão H ⊘ G módulo n\n");//explicando
+    
+    printf("\n     a = %d * %d mod %d = %d\n", H, Ginv, n, a);
+   
+    
+    //etapa 4
 
-    printf("\n4) Verificando se a = %d e n1 = %d sao coprimos...\n", a, n1);
+    printf("\n  4) Verificando se a = %d e n1 = %d sao coprimos...\n", a, n1);
+    
+    printf("   → Entenda: Precisamos garantir que a e n1 sejam coprimos para aplicar Fermat ou Euler\n");//explicando
+    
     if (calcular_mdc(a, n1) != 1)
       {
-        printf("a e n1 nao sao coprimos. O teorema nao se aplica.\n");
+        printf("\n  a e n1 nao sao coprimos. O teorema nao se aplica.\n");
         return 1;
       }
-    printf("Verificado! a e n1 sao coprimos. Prosseguindo...\n");
+    printf("\n     Verificado! a e n1 sao coprimos. Prosseguindo...\n");
 
+   
+    //etapa 5, 6 e 7
+   
     int x1;
+    printf("\n  5) Verificando se n1 eh primo\n");
     if (verifica_primo(n1))
       {
-        printf("\n5) n1 e primo.\n");
-        printf("6) Aplicando o Pequeno Teorema de Fermat...\n");
+        printf("\n     n1 eh primo.\n");
+        
+        printf("\n  6) Aplicando o Pequeno Teorema de Fermat...\n");
         x1 = n1 - 1;
-        printf("7) Passo 7 (Euler) nao se aplica pois n1 e primo.\n");
+        printf("   → Entenda: x1 representa a ordem de a módulo n1, definida por Fermat (n1 primo) ou por Euler (n1 não primo)\n");//explicando
+        
+        printf("\n     x1 = %d\n", x1);        
+        
+        printf("\n  7) *Passo 7 (Euler) nao se aplica pois n1 eh primo.\n");
       }
     else
       {
-        printf("\n5) n1 nao e primo.\n");
-        printf("6) Passo 6 (Fermat) nao se aplica pois n1 nao e primo.\n");
-        printf("7) Aplicando o Teorema de Euler...\n");
+        printf("\n     n1 nao eh primo.\n");
+        
+        printf("\n  6) *Passo 6 (Fermat) nao se aplica pois n1 nao eh primo.\n");
+        
+        printf("\n  7) Aplicando o Teorema de Euler...\n");
         x1 = totiente(n1);
+        printf("   → Entenda: x1 representa a ordem de a módulo n1, definida por Fermat (n1 primo) ou por Euler (n1 não primo)\n");//explicando
+      
+        printf("\n     x1 = %d\n", x1);
       }
-    printf("x1 = %d\n", x1);
+    
+    //etapa 8
 
-    printf("\n8) Decompondo x = x1 * q + r...\n");
+    printf("\n  8) Decompondo x = x1 * q + r...\n");
     int q = x / x1;
     int r = x % x1;
-    printf("x = %d = %d * %d + %d\n", x, x1, q, r);
+    printf("     x = %d = %d * %d + %d\n", x, x1, q, r);
 
-    printf("\n9) Calculando exponenciacoes modulares...\n");
+   //etapa 9
+
+    printf("\n  9) Calculando exponenciacoes modulares...\n");
     int x2 = exp_mod(a, x1, n1);
     int parte1 = exp_mod(x2, q, n1);
     int parte2 = exp_mod(a, r, n1);
+    
+    printf("   → Entenda: Utilizamos a^x = (a^x1)^q * a^r, aplicando módulo n1 em cada etapa para manter os números controlados\n");//explicando
 
-    printf("x2 = a^x1 mod n1 = %d\n", x2);
-    printf("x2^q mod n1 = %d\n", parte1);
-    printf("a^r mod n1 = %d\n", parte2);
+    printf("\n     x2 = a^x1 mod n1 = %d\n", x2);
+    printf("     x2^q mod n1 = %d\n", parte1);
+    printf("     a^r mod n1 = %d\n", parte2);
 
+   //etapa10
+   
     int resultado = (parte1 * parte2) % n1;
-    printf("\n10) Resultado final: a^x mod n1 = ((%d^%d) * %d) mod %d = %d\n", x2, q, parte2, n1, resultado);
+    printf("\n  10) Etapa final: a^x mod n1 = ((%d^%d) * %d) mod %d = %d\n", x2, q, parte2, n1, resultado);
+    printf("   → Entenda: Usamos propriedades da congruência modular para combinar os resultados das potências e obter o valor final\n");//explicando
+   
+    printf("\n  Resultado: %d\n", resultado);
+    printf("\n=====================================================================================================================\n");
+    
+    printf("\nAna Beatriz Cunha Wirthmann - 190139048\n");
 
     return 0;
   }
