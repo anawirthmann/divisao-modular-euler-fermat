@@ -1,13 +1,12 @@
 /*
- ============================================================================
+ ==============================================
  Aluna: Ana Beatriz Cunha Wirthmann - 190139048
  Disciplina: Matemática Discreta II – 2025.1
  Professora: Cristiane Loesch de Souza Costa
- ============================================================================
+ ==============================================
 */
+
 #include <stdio.h>
-
-
 
 // ---------- FUNÇÕES AUXILIARES ----------
 
@@ -123,7 +122,7 @@ int main()
 
     scanf("%d %d %d %d %d", &H, &G, &n, &x, &n1);
     
-    //etapa 1
+   //etapa 1
 
     printf("\n  1) Verificando se G e n sao coprimos usando o Algoritmo de Euclides...\n");
     int d = calcular_mdc(G, n);
@@ -161,6 +160,7 @@ int main()
     printf("   → Entenda: Multiplicamos H pelo inverso de G para efetuar a divisão H ⊘ G módulo n\n");//explicando
     
     printf("\n     a = %d * %d mod %d = %d\n", H, Ginv, n, a);
+   
     
     //etapa 4
 
@@ -175,6 +175,9 @@ int main()
       }
     printf("\n     Verificado! a e n1 sao coprimos. Prosseguindo...\n");
 
+   
+    //etapa 5, 6 e 7
+   
     int x1;
     printf("\n  5) Verificando se n1 eh primo\n");
     if (verifica_primo(n1))
@@ -202,12 +205,14 @@ int main()
         printf("\n     x1 = %d\n", x1);
       }
     
-    
+    //etapa 8
 
     printf("\n  8) Decompondo x = x1 * q + r...\n");
     int q = x / x1;
     int r = x % x1;
     printf("     x = %d = %d * %d + %d\n", x, x1, q, r);
+
+   //etapa 9
 
     printf("\n  9) Calculando exponenciacoes modulares...\n");
     int x2 = exp_mod(a, x1, n1);
@@ -220,6 +225,8 @@ int main()
     printf("     x2^q mod n1 = %d\n", parte1);
     printf("     a^r mod n1 = %d\n", parte2);
 
+   //etapa10
+   
     int resultado = (parte1 * parte2) % n1;
     printf("\n  10) Etapa final: a^x mod n1 = ((%d^%d) * %d) mod %d = %d\n", x2, q, parte2, n1, resultado);
     printf("   → Entenda: Usamos propriedades da congruência modular para combinar os resultados das potências e obter o valor final\n");//explicando
