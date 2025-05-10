@@ -16,7 +16,7 @@ O programa foi escrito em linguagem **C**, prezando pela clareza, explicação p
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Permitir que qualquer usuário possa:
 
@@ -26,7 +26,7 @@ Permitir que qualquer usuário possa:
 
 ---
 
-## 📂 Arquivos
+## Arquivos
 
 - `AnaBeatriz_Q9.c`: código-fonte completo
 - `README.md`: este arquivo
@@ -34,7 +34,7 @@ Permitir que qualquer usuário possa:
 
 ---
 
-## 👩‍🎓 Sobre mim
+## Sobre mim
 
 Sou estudante da disciplina e desenvolvi este programa com muito cuidado, utilizando os conceitos aprendidos até agora. Meu foco foi não apenas entregar um código que funciona, mas algo que eu consiga entender, explicar e justificar.
 
